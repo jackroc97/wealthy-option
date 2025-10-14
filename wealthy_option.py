@@ -1,7 +1,7 @@
 from datetime import time, timedelta
 from ib_async import *
+
 from ibkrkit import *
-    
     
 def round_to_nearest_quarter(x: float) -> float:
     return round(x * 4) / 4
@@ -51,12 +51,10 @@ class WealthyOption(IbkrStrategy):
                                   currency=self.ES_contract.currency,
                                   comboLegs=[short_leg, long_leg])
                 
-                # TODO: May want to get spread price data from data streams on the underlying options
-                # instead of using the options chain data.  This is because the selected strikes 
-                # may no longer be in the filtered options chain.  Otherwise, we would need to make
-                # sure the filtered options data remains up to date based on the underlying spot price.
                 # Calculate the limit price, take profit, and stop loss
-                limit_price = self.ES_options.get(short_put, "bid") - self.ES_options.get(long_put, "ask")
+                sp_data = await IbkrDataStream.create(self.ib, short_put)
+                lp_data = await IbkrDataStream.create(self.ib, long_put)
+                limit_price = sp_data.get("bid") - lp_data.get("ask")
                 take_profit_price = round_to_nearest_quarter((1 - self.take_profit_pct) * limit_price)
                 stop_loss_price = round_to_nearest_quarter((1 + self.stop_loss_pct) * limit_price)
 
