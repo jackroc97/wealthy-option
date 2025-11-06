@@ -10,7 +10,6 @@ def round_to_nearest_quarter(x: float) -> float:
 class WealthyOption(IbkrStrategy):
     name = "WealthyOptionStrategy"
     version = "0.1.0"
-    log_db_path = "log.db"
     
     ES_contract = Future(symbol="ES", lastTradeDateOrContractMonth="202512", exchange="CME", currency="USD")
     time_min = time(9, 45)
@@ -67,8 +66,7 @@ class WealthyOption(IbkrStrategy):
                                                  stop_loss_price=stop_loss_price)
                 for trade in trades:
                     self.print_msg(f"Placed order: {self.trade_as_str(trade)}")
-                    self.logger.log_order(trade.order, { "underlying_price": self.ES_data.get('last'), 
-                                                         "short_put_delta": self.ES_options.get(short_put, "delta") })
+
 
     
     async def on_stop(self):
@@ -83,7 +81,7 @@ class WealthyOption(IbkrStrategy):
         return in_session and not has_open_positions and not has_open_orders   
         
     
-    def select_short_put(self) -> Contract | None:
+    def select_short_put(self) -> FuturesOption | None:
         dte_min = self.dte_min
         dte_max = self.dte_max
         match self.now.weekday():
@@ -105,7 +103,7 @@ class WealthyOption(IbkrStrategy):
         return None 
         
         
-    def select_long_put(self, short_put: Contract) -> Contract:
+    def select_long_put(self, short_put: Contract) -> FuturesOption:
         return FuturesOption(symbol=short_put.symbol,
                              lastTradeDateOrContractMonth=short_put.lastTradeDateOrContractMonth, 
                              strike=short_put.strike - self.spread_width, 
@@ -116,4 +114,3 @@ class WealthyOption(IbkrStrategy):
     
     def on_order_partial_fill(self, trade: Trade, fill: Fill):
         self.print_msg(f"##### ORDER FILL #####: {self.fill_as_str(fill)}")
-        self.logger.log_fill(trade, fill)

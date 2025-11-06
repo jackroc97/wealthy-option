@@ -50,9 +50,11 @@ services:
       - "127.0.0.1:4002:4004"
       - "127.0.0.1:5900:5900"
 
-  wealthy-option-strategy:
+  strategy:
     build: .
     environment:
+      HOST: "ib-gateway"
+      PORT: 4004    # paper trading
       ACCOUNT_ID: "DU7809603"
       CLIENT_ID: 1
     stdin_open: true
@@ -64,4 +66,11 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       # My logs
-      - ${PWD}/log.db
+      # - type: bind
+      #   source: ./bot/log.db
+      #   target: /app/log.db
+      #   read_only: false
+      - type: bind
+        source: ./bot/log.txt
+        target: /app/log.txt
+        read_only: false
