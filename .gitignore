@@ -4,5 +4,4 @@
 **/__pycache__
 
 # Contains sensitive data
-setup.sh
-setup-dev.sh
+**/setup.sh

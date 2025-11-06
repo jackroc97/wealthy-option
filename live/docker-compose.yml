@@ -65,12 +65,5 @@ services:
       # This ties the container to the host timezone
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      # My logs
-      # - type: bind
-      #   source: ./bot/log.db
-      #   target: /app/log.db
-      #   read_only: false
-      - type: bind
-        source: ./bot/log.txt
-        target: /app/log.txt
-        read_only: false
+      - ./logs:/app/logs
+ 

@@ -1,9 +1,9 @@
 aeventkit==2.1.0
 ib_async==2.0.1
--e git+https://github.com/jackroc97/ibkit.git@d5ad5b2ecdc447aa8960b0e163481294ac147365#egg=ibkrkit
+-e git+https://github.com/jackroc97/ibkit.git@main#egg=ibkrkit
 nest-asyncio==1.6.0
 numpy==2.3.3
-pandas==2.3.2
+pandas==2.3.3
 python-dateutil==2.9.0.post0
 pytz==2025.2
 six==1.17.0

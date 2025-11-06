@@ -1,38 +1,25 @@
 # wealthy-option
-Wealth option trading strategy implemented in python using ibkr
+This repo contains backtests and live implementations of the [WealthyOption](https://wealthyoption.com/) trading strategy.
 
-## Run locally
+## Running Backtest
 
-1. Run `source setup-dev.sh` 
-2. Start IB Gateway program
-3. Run `main.py`
+1. In `wealthy-option`, change directory to the `backtest` directory
+2. Run `run_backtest.py`
 
-## Run locally with docker-compose
+## Running Live (Paper or "Real" Trading)
+
+### Run locally
+
+1. Start IB Gateway program
+2. In `wealthy-option`, change directory to the `live` directory
+3. Ensure the correct python venv is activated.
+4. Run `source setup-dev.sh` 
+5. Run `./app/main.py`
+
+### Run containerized app using docker-compose
 
 1. Ensure any changes to requirements have been pushed to their main brach in git
-2. `docker-compose up`
+2. In `wealthy-option`, change directory to the `live` directory
+3. `docker-compose up`
 
-
-Create group
-```
-az acr create --resource-group trading-bots --name wealthoption --sku Basic
-```
-
-Build images
-...
-
-Tag images
-```
-docker tag ghcr.io/gnzsnz/ib-gateway:stable wealthyoption.azurecr.io/ib-gateway:latest
-docker tag algo-trader-wealthy-option-bot wealthyoption.azurecr.io/wealthy-option:latest
-```
-
-Push images
-```
-docker push wealthyoption.azurecr.io/ib-gateway:latest
-docker push wealthyoption.azurecr.io/wealthy-option:latest
-```
-
-```
-az container create --resource-group trading-bots --file docker-compose.yml --name algo-trader 
-```
+In either case, logs are written to `wealthy-option/live/logs` directory.
