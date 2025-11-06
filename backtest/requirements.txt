@@ -1,0 +1,32 @@
+aeventkit==2.1.0
+aiohappyeyeballs==2.6.1
+aiohttp==3.13.1
+aiosignal==1.4.0
+attrs==25.4.0
+-e git+https://github.com/jackroc97/btkit.git@6bf3ec16f6a9dc1831a78ee86e3890ace62b4d05#egg=btkit
+certifi==2025.10.5
+charset-normalizer==3.4.4
+databento==0.64.0
+databento-dbn==0.42.0
+duckdb==1.4.1
+frozenlist==1.8.0
+ib_async==2.0.1
+-e git+https://github.com/jackroc97/ibkit.git@0b8cea0eda255aa8bedee9939c474eed5082cd41#egg=ibkrkit
+idna==3.11
+multidict==6.7.0
+nest-asyncio==1.6.0
+numpy==2.3.3
+pandas==2.3.3
+propcache==0.4.1
+pyarrow==21.0.0
+python-dateutil==2.9.0.post0
+pytz==2025.2
+PyYAML==6.0.3
+requests==2.32.5
+scipy==1.16.2
+six==1.17.0
+typing_extensions==4.15.0
+tzdata==2025.2
+urllib3==2.5.0
+yarl==1.22.0
+zstandard==0.25.0
