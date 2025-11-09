@@ -1,7 +1,7 @@
 from datetime import date, datetime, timedelta, time
 
 from btkit.instrument import Instrument, InstrumentStore, OptionRight, Option
-from btkit.order import Order
+from btkit.order import Order, OrderAction
 from btkit.strategy import Strategy, DateSettings
 
 
@@ -11,8 +11,8 @@ class WealthyOption(Strategy):
     
     time_min = time(9, 45)
     time_max = time(23, 45)
-    dte_min = 0
-    dte_max = 3
+    dte_min = 1
+    dte_max = 4
     desired_delta = -0.065
     spread_width = 50
     take_profit_pct = 0.7
@@ -26,13 +26,13 @@ class WealthyOption(Strategy):
             
     
     def tick(self):
-        self.print_msg(f"ES close price: {self.ES.at(self.now).get('close')}")
+        self.print_msg(f"ES close price: {self.ES.at(self.now).get('close')} | Balance: {self.broker.cash_balance}")
          
         if self.should_open_new_position():
             short_put = self.select_short_put()
             if short_put is not None:
                 long_put = self.select_long_put(short_put)
-                self.broker.open_position(Order(-1, short_put), Order(1, long_put))
+                self.broker.open_position(Order(OrderAction.STO, 1, short_put), Order(OrderAction.BTO, 1, long_put))
     
         else:
             self.print_msg(",".join(str(p) + f" PnL = ${p.pnl:.2f}, MKT = ${p.market_price:.2f}" for p in self.broker.positions))

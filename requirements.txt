@@ -3,22 +3,30 @@ aiohappyeyeballs==2.6.1
 aiohttp==3.13.1
 aiosignal==1.4.0
 attrs==25.4.0
--e git+https://github.com/jackroc97/btkit.git@6bf3ec16f6a9dc1831a78ee86e3890ace62b4d05#egg=btkit
+-e git+https://github.com/jackroc97/btkit.git@85f6749fc34757fca5e43b90c9a607253592ba45#egg=btkit
 certifi==2025.10.5
 charset-normalizer==3.4.4
+contourpy==1.3.3
+cycler==0.12.1
 databento==0.64.0
 databento-dbn==0.42.0
 duckdb==1.4.1
+fonttools==4.60.1
 frozenlist==1.8.0
 ib_async==2.0.1
--e git+https://github.com/jackroc97/ibkit.git@0b8cea0eda255aa8bedee9939c474eed5082cd41#egg=ibkrkit
+-e git+https://github.com/jackroc97/ibkit.git@5ce11d6f281fc114423f436a7bd37dd8658953ac#egg=ibkrkit
 idna==3.11
+kiwisolver==1.4.9
+matplotlib==3.10.7
 multidict==6.7.0
 nest-asyncio==1.6.0
 numpy==2.3.3
+packaging==25.0
 pandas==2.3.3
+pillow==12.0.0
 propcache==0.4.1
 pyarrow==21.0.0
+pyparsing==3.2.5
 python-dateutil==2.9.0.post0
 pytz==2025.2
 PyYAML==6.0.3
